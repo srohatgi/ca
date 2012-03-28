@@ -23,6 +23,7 @@
 	<key>ExternalHosts</key>
 	<array>
 		<string>*.phonegap.com</string>
+		<string>*.jquery.com</string>
 	</array>
 	<key>Plugins</key>
 	<dict>
