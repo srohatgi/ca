@@ -22,6 +22,8 @@
 	<false/>
 	<key>ExternalHosts</key>
 	<array>
+		<string>*.gstatic.com</string>
+		<string>*.googleapis.com</string>
 		<string>*.phonegap.com</string>
 		<string>*.jquery.com</string>
 	</array>
