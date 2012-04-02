@@ -4,19 +4,20 @@
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+    <link rel="stylesheet" href="jquery.mobile-1.1.0-rc.1.min.css" />
     <!-- iPad/iPhone specific css below, add after your main css >
     <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
     <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
     -->
 	  <script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>
+	  <script type="text/javascript" charset="utf-8" src="NativeControls.js"></script>
   </head>
 
   <body>
   
     <div data-role="page" id="index-page">
       <div data-role="header" data-position="fixed">
-        <div data-role="navbar">
+        <div data-role="navbar" data-mini="true" data-theme="c">
           <ul>
             <li><a href="index.html?folders">Folders</a></li>
             <li><a href="index.html?activity" class="ui-btn-active">Activity</a></li>
@@ -51,22 +52,12 @@
       	</ul>
       </div>
 
-      <div data-role="footer" data-position="fixed">
-        <div data-role="navbar">
-          <ul>
-            <li><a href="index.html" class="ui-btn-active" data-icon="home">Home</a></li>
-            <li><a href="map.html" data-icon="search">Locate</a></li>
-            <li><a href="share.html" data-icon="grid">Screen</a></li>
-          </ul>
-        </div>
-      </div>    
     </div>
 
-    <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8"  src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>        
+    <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8"  src="jquery.mobile-1.1.0-rc.1.min.js"></script>        
     <script type="text/javascript" charset="utf-8" src="common.js"></script>
     <script type="text/javascript" charset="utf-8" src="map.js"></script>
-
   </body>
 
 </html>

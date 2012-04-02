@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C45A6B1B1527F3F200C98F86 /* NativeControls.m in Sources */ = {isa = PBXBuildFile; fileRef = C45A6B1A1527F3F200C98F86 /* NativeControls.m */; };
 		C488F19B1523AA8800B6908B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C488F19A1523AA8800B6908B /* Foundation.framework */; };
 		C488F19D1523AA8800B6908B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C488F19C1523AA8800B6908B /* UIKit.framework */; };
 		C488F19F1523AA8800B6908B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C488F19E1523AA8800B6908B /* CoreGraphics.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C45A6B191527F3DA00C98F86 /* NativeControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NativeControls.h; path = Plugins/NativeControls.h; sourceTree = "<group>"; };
+		C45A6B1A1527F3F200C98F86 /* NativeControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NativeControls.m; path = Plugins/NativeControls.m; sourceTree = "<group>"; };
 		C488F1961523AA8800B6908B /* Connected.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Connected.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C488F19A1523AA8800B6908B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C488F19C1523AA8800B6908B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -114,6 +117,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C45A6AFA152764D000C98F86 /* NativeControls */ = {
+			isa = PBXGroup;
+			children = (
+				C45A6B1A1527F3F200C98F86 /* NativeControls.m */,
+				C45A6B191527F3DA00C98F86 /* NativeControls.h */,
+			);
+			name = NativeControls;
+			sourceTree = "<group>";
+		};
 		C488F1881523AA8800B6908B = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +269,7 @@
 		C488F1E91523AA8800B6908B /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				C45A6AFA152764D000C98F86 /* NativeControls */,
 				C488F1EA1523AA8800B6908B /* README */,
 			);
 			name = Plugins;
@@ -351,7 +364,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "\n\t\t\t\t\t\t\t\tchmod 755 $PROJECT_DIR/$PROJECT_NAME/verify.sh\n\t\t\t\t\t\t\t\t$PROJECT_DIR/$PROJECT_NAME/verify.sh\n\t\t\t\t\t";
+			shellScript = "chmod 755 $PROJECT_DIR/$PROJECT_NAME/verify.sh\n$PROJECT_DIR/$PROJECT_NAME/verify.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -363,6 +376,7 @@
 				C488F1BB1523AA8800B6908B /* main.m in Sources */,
 				C488F1E31523AA8800B6908B /* AppDelegate.m in Sources */,
 				C488F1E61523AA8800B6908B /* MainViewController.m in Sources */,
+				C45A6B1B1527F3F200C98F86 /* NativeControls.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +561,7 @@
 				C488F1F11523AA8800B6908B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

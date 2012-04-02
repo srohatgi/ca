@@ -7,7 +7,7 @@
 	<key>TopActivityIndicator</key>
 	<string>gray</string>
 	<key>EnableLocation</key>
-	<false/>
+	<true/>
 	<key>EnableViewportScale</key>
 	<false/>
 	<key>AutoHideSplashScreen</key>
@@ -55,6 +55,8 @@
 		<string>CDVSplashScreen</string>
 		<key>org.apache.cordova.battery</key>
 		<string>CDVBattery</string>
+		<key>NativeControls</key>
+		<string>NativeControls</string>
 	</dict>
 </dict>
 </plist>

@@ -26,6 +26,7 @@ function init(url) {
   } else {
     // Add an event listener for deviceready
     document.addEventListener("deviceready", onDeviceReady, false);
+    window.addEventListener("resize", orientationChange, false);
   }
 }
 
@@ -34,15 +35,62 @@ function onDeviceReady() {
   deviceUUID = device.uuid;
   deviceDetection();
   networkDetection();
+  
+  // Initializating TabBar
+  nativeControls = window.plugins.nativeControls;
+  nativeControls.createTabBar();
+
+  // Books tab
+  nativeControls.createTabBarItem(
+    "home",
+    "Home",
+    "tabButton:TopRated",
+    {"onSelect": function() {
+      alert('index.html');
+      $.mobile.changePage( "index.html" );
+      }}
+  );
+
+  // Stats tab
+  nativeControls.createTabBarItem(
+    "locate",
+    "Locate",
+    "tabButton:Search",
+    {"onSelect": function() {
+      alert('map.html');
+      $.mobile.changePage( "map.html" );
+      }}
+  );
+
+  // About tab
+  nativeControls.createTabBarItem(
+    "collaborate",
+    "Collaborate",
+    "tabButton:Featured",
+    {"onSelect": function() {
+      alert('about');
+      }}
+  );
+
+  // Compile the TabBar
+  nativeControls.showTabBar({ 'position' : 'top' });
+  nativeControls.showTabBarItems("home", "locate", "collaborate");
+  nativeControls.selectTabBarItem("home");
+  
   executeEvents();
   executeCallback();
+}
+
+function orientationChange() {
+  var nativeControls = window.plugins.nativeControls;
+  nativeControls.resizeTabBar();
 }
 
 function executeEvents() {
   if (isPhoneGapReady) {
     // attach events for online and offline detection
     document.addEventListener("online", onOnline, false);
-    document.addEventListener("offline", onOffline, false);
+    document.addEventListener("offline", onOffline, false);    
 
     // attach events for pause and resume detection
     document.addEventListener("pause", onPause, false);

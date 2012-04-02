@@ -1,5 +1,5 @@
 function onMapLoad() {
-  //alert('calling http://maps.googleapis.com/maps/api/js?sensor=true&callback=getGeolocation')
+  alert('calling http://maps.googleapis.com/maps/api/js?sensor=true&callback=getGeolocation')
   if (isConnected) {
     // load the google api
     var fileref=document.createElement('script');
