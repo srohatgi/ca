@@ -314,7 +314,7 @@ NativeControls.install = function() {
   if ( !window.plugins )
     window.plugins = {};
   if ( !window.plugins.NativeControls ) {
-    alert("adding the native controls");
+    //alert("adding the native controls");
     window.plugins.nativeControls = new NativeControls();
   }
 }
