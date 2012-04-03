@@ -40,6 +40,10 @@
 		C488F1E81523AA8800B6908B /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C488F1E71523AA8800B6908B /* MainViewController.xib */; };
 		C488F1EC1523AA8800B6908B /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = C488F1EB1523AA8800B6908B /* verify.sh */; };
 		C488F1F31523AB4600B6908B /* www in Resources */ = {isa = PBXBuildFile; fileRef = C488F1F21523AB4600B6908B /* www */; };
+		C49A3538152A2AFB00F1E5F0 /* 193-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C49A3537152A2AFB00F1E5F0 /* 193-location-arrow.png */; };
+		C49A353C152A4E1200F1E5F0 /* 32-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = C49A3539152A4E1200F1E5F0 /* 32-iphone.png */; };
+		C49A353D152A4E1200F1E5F0 /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = C49A353A152A4E1200F1E5F0 /* 53-house.png */; };
+		C49A353E152A4E1200F1E5F0 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = C49A353B152A4E1200F1E5F0 /* 112-group.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +87,10 @@
 		C488F1EA1523AA8800B6908B /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		C488F1EB1523AA8800B6908B /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
 		C488F1F21523AB4600B6908B /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		C49A3537152A2AFB00F1E5F0 /* 193-location-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "193-location-arrow.png"; path = "Resources/icons/193-location-arrow.png"; sourceTree = "<group>"; };
+		C49A3539152A4E1200F1E5F0 /* 32-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "32-iphone.png"; path = "Resources/icons/32-iphone.png"; sourceTree = "<group>"; };
+		C49A353A152A4E1200F1E5F0 /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "53-house.png"; path = "Resources/icons/53-house.png"; sourceTree = "<group>"; };
+		C49A353B152A4E1200F1E5F0 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "112-group.png"; path = "Resources/icons/112-group.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +247,10 @@
 		C488F1D01523AA8800B6908B /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				C49A3539152A4E1200F1E5F0 /* 32-iphone.png */,
+				C49A353A152A4E1200F1E5F0 /* 53-house.png */,
+				C49A353B152A4E1200F1E5F0 /* 112-group.png */,
+				C49A3537152A2AFB00F1E5F0 /* 193-location-arrow.png */,
 				C488F1D11523AA8800B6908B /* icon.png */,
 				C488F1D31523AA8800B6908B /* icon@2x.png */,
 				C488F1D51523AA8800B6908B /* icon-72.png */,
@@ -347,6 +359,10 @@
 				C488F1E81523AA8800B6908B /* MainViewController.xib in Resources */,
 				C488F1EC1523AA8800B6908B /* verify.sh in Resources */,
 				C488F1F31523AB4600B6908B /* www in Resources */,
+				C49A3538152A2AFB00F1E5F0 /* 193-location-arrow.png in Resources */,
+				C49A353C152A4E1200F1E5F0 /* 32-iphone.png in Resources */,
+				C49A353D152A4E1200F1E5F0 /* 53-house.png in Resources */,
+				C49A353E152A4E1200F1E5F0 /* 112-group.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

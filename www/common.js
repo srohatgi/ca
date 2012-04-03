@@ -12,6 +12,7 @@ var isWindows = false;
 // Store the device's uuid
 var deviceUUID;
 var currentUrl;
+var currentPage;
 var internetInterval;
 
 function init(url) {
@@ -20,6 +21,11 @@ function init(url) {
   } else {
     currentUrl = url;
   }
+  
+  var parts = currentUrl.split("/");
+  currentPage = parts[parts.length - 1].slice(0, parts[parts.length - 1].indexOf(".html"));
+  // capitalize the first letter and execute the function
+  currentPage = currentPage.charAt(0).toUpperCase() + currentPage.slice(1);
 
   if (isPhoneGapReady) {
     onDeviceReady();
@@ -42,40 +48,44 @@ function onDeviceReady() {
 
   // Books tab
   nativeControls.createTabBarItem(
-    "home",
+    "Index",
     "Home",
-    "tabButton:TopRated",
-    {"onSelect": function() {
-      alert('index.html');
-      $.mobile.changePage( "index.html" );
-      }}
+    "53-house.png",
+    { "onSelect": function() {
+        //alert('index.html');
+        $.mobile.changePage( "index.html" );
+      }
+    }
   );
 
   // Stats tab
   nativeControls.createTabBarItem(
-    "locate",
+    "Map",
     "Locate",
-    "tabButton:Search",
-    {"onSelect": function() {
-      alert('map.html');
-      $.mobile.changePage( "map.html" );
-      }}
+    "112-group.png",
+    { "onSelect": function() {
+        //alert('map.html');
+        $.mobile.changePage( "map.html" );
+      }
+    }
   );
 
   // About tab
   nativeControls.createTabBarItem(
-    "collaborate",
-    "Collaborate",
-    "tabButton:Featured",
-    {"onSelect": function() {
-      alert('about');
-      }}
+    "Screen",
+    "Share",
+    "32-iphone.png",
+    { "onSelect": function() {
+        //alert('about');
+        $.mobile.changePage( "map.html" );
+      }
+    }
   );
 
   // Compile the TabBar
   nativeControls.showTabBar({ 'position' : 'top' });
-  nativeControls.showTabBarItems("home", "locate", "collaborate");
-  nativeControls.selectTabBarItem("home");
+  nativeControls.showTabBarItems("Index", "Map", "Screen");
+  nativeControls.selectTabBarItem(currentPage);
   
   executeEvents();
   executeCallback();
@@ -111,14 +121,7 @@ function executeEvents() {
 function executeCallback() {
   //alert('fired event isPhoneGapReady:'+isPhoneGapReady+" currentUrl:"+currentUrl);
   if (isPhoneGapReady) {
-    // get the name of the current html page
-    var pages = currentUrl.split("/");
-    var currentPage = pages[pages.length - 1].
-    slice(0, pages[pages.length - 1].indexOf(".html"));
-
-    // capitalize the first letter and execute the function
-    currentPage = currentPage.charAt(0).toUpperCase() + currentPage.slice(1);
-
+    //alert('calling on'+currentPage+'Load()');
     if (typeof window['on' + currentPage + 'Load'] == 'function') {
       window['on' + currentPage + 'Load']();
     }
