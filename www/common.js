@@ -14,6 +14,7 @@ var deviceUUID;
 var currentUrl;
 var currentPage;
 var internetInterval;
+var tabBarDrawn = false;
 
 function init(url) {
   if (typeof url != 'string') {
@@ -39,56 +40,68 @@ function init(url) {
 function onDeviceReady() {
   isPhoneGapReady = true;
   deviceUUID = device.uuid;
+
   deviceDetection();
-  networkDetection();
-  
-  // Initializating TabBar
-  nativeControls = window.plugins.nativeControls;
-  nativeControls.createTabBar();
-
-  // Books tab
-  nativeControls.createTabBarItem(
-    "Index",
-    "Home",
-    "53-house.png",
-    { "onSelect": function() {
-        //alert('index.html');
-        $.mobile.changePage( "index.html" );
-      }
-    }
-  );
-
-  // Stats tab
-  nativeControls.createTabBarItem(
-    "Map",
-    "Locate",
-    "112-group.png",
-    { "onSelect": function() {
-        //alert('map.html');
-        $.mobile.changePage( "map.html" );
-      }
-    }
-  );
-
-  // About tab
-  nativeControls.createTabBarItem(
-    "Screen",
-    "Share",
-    "32-iphone.png",
-    { "onSelect": function() {
-        //alert('about');
-        $.mobile.changePage( "map.html" );
-      }
-    }
-  );
-
-  // Compile the TabBar
-  nativeControls.showTabBar({ 'position' : 'top' });
-  nativeControls.showTabBarItems("Index", "Map", "Screen");
-  nativeControls.selectTabBarItem(currentPage);
-  
+  networkDetection();  
+  drawTabBar(currentPage);  
   executeEvents();
-  executeCallback();
+
+  //alert('calling on'+currentPage+'Load()');
+  if (typeof window['on' + currentPage + 'Load'] == 'function') {
+    window['on' + currentPage + 'Load']();
+  }
+}
+
+function drawTabBar() {
+  if ( !isPhoneGapReady ) return;
+  
+  if ( !tabBarDrawn ) {
+    // Initializating TabBar
+    nativeControls = window.plugins.nativeControls;
+    nativeControls.createTabBar();
+
+    // Listing/ preview of files mode
+    nativeControls.createTabBarItem(
+      "Index",
+      "Home",
+      "53-house.png",
+      { "onSelect": function() {
+          //alert('index.html');
+          $.mobile.changePage( "index.html" );
+        }
+      }
+    );
+
+    // Locate collaborator mode
+    nativeControls.createTabBarItem(
+      "Map",
+      "Locate",
+      "112-group.png",
+      { "onSelect": function() {
+          //alert('map.html');
+          $.mobile.changePage( "map.html" );
+        }
+      }
+    );
+
+    // Share screen mode
+    nativeControls.createTabBarItem(
+      "Screen",
+      "Share",
+      "32-iphone.png",
+      { "onSelect": function() {
+          //alert('about');
+          $.mobile.changePage( "map.html" );
+        }
+      }
+    );
+
+    // Compile the TabBar
+    nativeControls.showTabBar({ 'position' : 'top' });
+    nativeControls.showTabBarItems("Index", "Map", "Screen");
+    tabBarDrawn = true;
+  }  
+  nativeControls.selectTabBarItem(currentPage);
 }
 
 function orientationChange() {
@@ -114,17 +127,6 @@ function executeEvents() {
         onOffline();
       }
     }, 5000);
-  }
-}
-
-// call an on<Page>Load() function if it exists 
-function executeCallback() {
-  //alert('fired event isPhoneGapReady:'+isPhoneGapReady+" currentUrl:"+currentUrl);
-  if (isPhoneGapReady) {
-    //alert('calling on'+currentPage+'Load()');
-    if (typeof window['on' + currentPage + 'Load'] == 'function') {
-      window['on' + currentPage + 'Load']();
-    }
   }
 }
 
