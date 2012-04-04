@@ -91,7 +91,7 @@ function drawTabBar() {
       "32-iphone.png",
       { "onSelect": function() {
           //alert('about');
-          $.mobile.changePage( "map.html" );
+          $.mobile.changePage( "screen.html" );
         }
       }
     );
