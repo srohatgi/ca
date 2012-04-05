@@ -64,7 +64,7 @@ function drawTabBar() {
     nativeControls.createTabBarItem(
       "Index",
       "Folders",
-      "53-house.png",
+      "33-cabinet.png",
       { "onSelect": function() {
           //alert('index.html');
           $.mobile.changePage( "index.html" );
