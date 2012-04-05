@@ -362,22 +362,15 @@
 /*********************************************************************************/
 - (void)createToolBar:(NSArray*)arguments withDict:(NSDictionary*)options
 {
-  CGFloat height   = 45.0f;
+  CGFloat height   = 30.0f;
   BOOL atTop       = YES;
-  UIBarStyle style = UIBarStyleBlackOpaque;
+  UIBarStyle style = UIBarStyleDefault;
+  int args_count = [arguments count];
   
-  NSDictionary* toolBarSettings = options;//[settings objectForKey:@"ToolBarSettings"];
-  if (toolBarSettings) 
-	{
-    if ([toolBarSettings objectForKey:@"height"])
-      height = [[toolBarSettings objectForKey:@"height"] floatValue];
-		
-    if ([toolBarSettings objectForKey:@"position"])
-      atTop  = [[toolBarSettings objectForKey:@"position"] isEqualToString:@"top"];
-    
-#pragma unused(atTop)
-		
-    NSString *styleStr = [toolBarSettings objectForKey:@"style"];
+  if ( args_count > 0 ) height = [[arguments objectAtIndex:0] floatValue];
+  if ( args_count > 1 ) atTop = [[arguments objectAtIndex:1] isEqualToString:@"top"];
+  if ( args_count > 2 ) {
+    NSString *styleStr = [arguments objectAtIndex:2];
     if ([styleStr isEqualToString:@"Default"])
       style = UIBarStyleDefault;
     else if ([styleStr isEqualToString:@"BlackOpaque"])
@@ -385,7 +378,7 @@
     else if ([styleStr isEqualToString:@"BlackTranslucent"])
       style = UIBarStyleBlackTranslucent;
   }
-  
+    
   CGRect webViewBounds = self.webView.bounds;
   CGRect toolBarBounds = CGRectMake(
                                     webViewBounds.origin.x,
@@ -451,12 +444,14 @@
   if (!toolBar)
     [self createToolBar:nil withDict:nil];
   
+  //NSString *title = @"YouSendIt Connect";
   NSString *title = [arguments objectAtIndex:0];
   
   
   if (!toolBarTitle) {
     NSLog(@"not : %@", title);
     toolBarTitle = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(toolBarTitleClicked)];
+    toolBarTitle.title = title;
   } else {
     NSLog(@"is: %@", title);
     toolBarTitle.title = title;

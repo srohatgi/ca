@@ -63,7 +63,7 @@ function drawTabBar() {
     // Listing/ preview of files mode
     nativeControls.createTabBarItem(
       "Index",
-      "Home",
+      "Folders",
       "53-house.png",
       { "onSelect": function() {
           //alert('index.html');
@@ -75,7 +75,7 @@ function drawTabBar() {
     // Locate collaborator mode
     nativeControls.createTabBarItem(
       "Map",
-      "Locate",
+      "Activities",
       "112-group.png",
       { "onSelect": function() {
           //alert('map.html');
@@ -87,7 +87,7 @@ function drawTabBar() {
     // Share screen mode
     nativeControls.createTabBarItem(
       "Screen",
-      "Share",
+      "Connect",
       "32-iphone.png",
       { "onSelect": function() {
           //alert('about');
@@ -100,6 +100,10 @@ function drawTabBar() {
     nativeControls.showTabBar({ 'position' : 'top' });
     nativeControls.showTabBarItems("Index", "Map", "Screen");
     tabBarDrawn = true;
+    /*
+    nativeControls.createToolBar('20','top','Default');
+    nativeControls.setToolBarTitle('YouSendIt Connect');
+    nativeControls.showToolBar(); */   
   }  
   nativeControls.selectTabBarItem(currentPage);
 }

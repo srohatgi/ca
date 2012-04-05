@@ -15,8 +15,29 @@ function onMapLoad() {
     //alert('drawing the map!');
     getGeolocation();
   }
-  
+  //alert('hello');
+  createActivityStream('#activities',[ 
+    { n: 'Mihir', v: 'updated Product Roadmap folder', d: '8:00PM'},
+    { n: 'Sumeet', v: 'invited Stanford to Engineering folder', d: '3 APR'},
+    { n: 'Varun', v: 'downloaded Mobile.pptx', d: '3 APR'},
+    { n: 'Brian', v: 'commented on Product Roadmap', d: '1 APR'},
+    { n: 'Stanford', v: 'created Technology Strategy', d: '1 APR'},
+  ]);  
 }
+
+function createActivityStream(e_id,items) {
+  var li_tag = '';
+  //alert('e_id='+e_id+' li_tag='+li_tag);
+  for (var r=0;r<items.length;r++) {
+    li_tag += '<li>'+
+              '<a href="index.html"><h3>'+items[r].n+'</h3><p>'+items[r].v+'</p><p class="ui-li-aside"><strong>'+items[r].d+'</strong></p></a>'+
+              '<a href="index.html"/>'+
+              '</li>';
+  }
+  //alert('e_id='+e_id+' li_tag='+li_tag);
+  $(e_id).append('<ul data-role="listview" data-theme="c">'+li_tag+'</ul>').trigger("create");; 
+}
+
 
 // get the user's gps coordinates and display map
 function getGeolocation() {
