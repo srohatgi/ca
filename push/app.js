@@ -1,11 +1,13 @@
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes')
+  , Spawn = require('./spawn').Spawn
+  , Walk = require('./spawn').Walk;
   
+
 var app = module.exports = express.createServer();
 var io = require('socket.io').listen(app);
 var ua = require('./useragent');
 
-// Configuration
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
@@ -25,14 +27,15 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
-// Routes
-
-app.get('/', routes.index);
-app.get('/doc', routes.doc);
+app.get('/', function(req, res) {
+  res.render('index.jade', {locals: {title: 'Activity Feeds' }});
+  //res.sendfile(__dirname + '/feed.html');
+});
 
 var devices = {};
+var feed = new Array();
 
-io.configure(function (){
+io.configure(function () {
   io.set('authorization', function (handshakeData, callback) {
     console.log("connection User-Agent:"+handshakeData.headers['user-agent']);
     handshakeData['parsed_user_agent'] = ua.parse(handshakeData.headers['user-agent']);
@@ -41,31 +44,30 @@ io.configure(function (){
   });
 });
 
+
 io.sockets.on('connection', function (socket) {
   
-  socket.on('share_request', function (session) {
-    // session {
-    //   device: the device who gets sent the share request,
-    //   doc_id: the doc_id to be shared 
-    // }
-    var msg = { req_user: socket.device, doc_id: session.doc_id };
-    devices[socket.device].emit('fetch_session', msg);
+  socket.on('openfile', function (filename) {
+    Spawn('open',[filename]);
   });
     
-  socket.on('add_device', function(username){
-    // create a unique device handle
+  socket.on('adddevice', function(user){
     var a = socket.handshake['parsed_user_agent'];
-    var token = username+"'s "+a.platform.name+' '+a.browser.name+' '+a.engine.name;
+    var token = user+"'s "+a.platform.name+' '+a.browser.name+' '+a.engine.name;
     
-    socket.device_id = token;
-    devices[socket.device_id] = socket;
+    socket.username = token;
+    devices[token] = '/'+a.platform.name+'_'+a.browser.name+'_'+a.engine.name+'.png';
       
-    io.sockets.emit('update_devices', devices);    
+    Walk(process.env.HOME+'/YouSendIt', function(err, filelist) {
+      if (err) throw err;
+      console.log('sending back file list of length:'+filelist.length);
+      socket.emit('filelist', filelist);
+    });
   });
     
   socket.on('disconnect', function(){
-    delete devices[socket.device_id];
-    io.sockets.emit('updatedevices', devices);
+    // remove the username from global usernames list
+    delete devices[socket.username];
   });
 });
 
