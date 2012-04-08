@@ -15,6 +15,9 @@ var currentUrl;
 var currentPage;
 var internetInterval;
 var tabBarDrawn = false;
+var socket = null;
+var filelist;
+var filter;
 
 function init(url) {
   if (typeof url != 'string') {
@@ -37,6 +40,86 @@ function init(url) {
   }
 }
 
+function registerDevice() {
+
+  var populatefiles = function() {
+    //console.log('flist length:'+filelist.length+' $(#filelist)='+$('#filelist'));
+    var dir = {}; // for keeping a unique list of directories
+
+    $('#filelist li').remove(); // remove all files from the document list
+
+    var back_li = false;
+    for (var i=0;i<filelist.length;i++) {
+      var item = filelist[i].file; // shorthand
+
+      // only want files belonging to the filter path
+      if ( filter ) {
+        if ( item.indexOf(filter) !== 0 ) continue; // item prefix doesn't match the filter, discard this item
+        else {
+          item = item.slice(filter.length); // remove the filter portion from the item
+        }
+      }
+      
+      // weed out duplicate dir listings
+      if ( item.indexOf('/') !== -1 ) {
+        item = item.slice(0,item.indexOf('/')+1); // top level directory
+        if ( dir[item] ) continue; // we have seen this dir before
+        else {
+          dir[item] = true; // remember this dir for next time
+        }
+      }
+      
+      if ( back_li === false && filter ) {
+        $('#filelist').append('<li><a href="#"><p>..</p></a></li>');
+        back_li = true;
+      }
+      var s = '<li><a href="#"><p>'+item+'</p></a></li>';
+      $('#filelist').append(s);
+    }
+    
+    $("#filelist li").on("click", function (event) {
+      var fname = (filter?filter:'')+$(this).text();
+      console.log('filter:('+filter+') text:('+$(this).text()+') fname:('+fname+')');
+
+      // if its a directory, then filter on!
+      if ( fname.lastIndexOf('/') === fname.length-1 ) {
+        filter = fname; // reset the filter to current directory
+        populatefiles();
+        return;
+      } else if ( fname.lastIndexOf('..') == fname.length-2 ) {
+        filter = fname.slice(0,fname.length-3); // remove '/..' from 'hello/world/..'
+        filter = filter.slice(0,filter.lastIndexOf('/')+1); // remove 'world' from 'hello/world'
+        populatefiles();
+        return;
+      }
+      
+      // its a file, lets open it on the mac!
+      socket.emit('openfile',fname);
+    });
+    
+    $('#filelist').listview('refresh');
+  };
+  
+  if ( socket ) {
+    populatefiles();
+    return;
+  }
+  
+  var user = 'sumeet';
+  var socket = io.connect('http://localhost:3000');
+  
+  socket.on('connect', function() {
+    console.log('connected to http://localhost:3000');
+    socket.emit('adddevice','sumeet');
+  });
+  
+  socket.on('filelist', function(flist) {
+    console.log('recieved file list:'+flist.length);
+    filelist = flist;
+    populatefiles();
+  });
+}
+
 function onDeviceReady() {
   isPhoneGapReady = true;
   deviceUUID = device.uuid;
@@ -45,7 +128,14 @@ function onDeviceReady() {
   networkDetection();  
   drawTabBar(currentPage);  
   executeEvents();
+  registerDevice();
 
+  $(document).bind("mobileinit", function()
+  {
+    $.mobile.defaultPageTransition = 'none';
+    $.mobile.defaultDialogTransition = 'none';
+  });
+  
   //alert('calling on'+currentPage+'Load()');
   if (typeof window['on' + currentPage + 'Load'] == 'function') {
     window['on' + currentPage + 'Load']();

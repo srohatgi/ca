@@ -30,12 +30,15 @@ function createActivityStream(e_id,items) {
   //alert('e_id='+e_id+' li_tag='+li_tag);
   for (var r=0;r<items.length;r++) {
     li_tag += '<li>'+
-              '<a href="index.html"><h3>'+items[r].n+'</h3><p>'+items[r].v+'</p><p class="ui-li-aside"><strong>'+items[r].d+'</strong></p></a>'+
-              '<a href="index.html"/>'+
+              //'<fieldset data-role="controlgroup">'+
+              '<a href="index.html">'+
+              '<h3>'+items[r].n+'</h3><p>'+items[r].v+'</p><p class="ui-li-aside"><strong>'+items[r].d+'</strong></p>'+
+              '</a>'+
+              //'</fieldset>'+
               '</li>';
   }
   //alert('e_id='+e_id+' li_tag='+li_tag);
-  $(e_id).append('<ul data-role="listview" data-theme="c">'+li_tag+'</ul>').trigger("create");; 
+  $(e_id).append('<ul data-role="listview" data-theme="c">'+li_tag+'</ul>').trigger("create");
 }
 
 

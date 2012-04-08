@@ -4,13 +4,15 @@
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
-    <!-- iPad/iPhone specific css below, add after your main css >
+    <link rel="stylesheet" href="jquery.mobile-1.1.0-rc.1.min.css" />
+    <link rel="stylesheet" href="fix_page_flicker.css" />
+    <!-- iPad/iPhone specific css below, add after your main css:
     <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
     <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
     -->
 	  <script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>
 	  <script type="text/javascript" charset="utf-8" src="NativeControls.js"></script>
+	  <script type="text/javascript" charset="utf-8" src="http://localhost:3000/socket.io/socket.io.js"></script>
   </head>
 
   <body>
@@ -18,9 +20,9 @@
     <div data-role="page" id="index-page">
 
       <div class="content-primary">	
-      	<ul data-role="listview">
+      	<ul id='filelist' data-role="listview">
       		<li><a href="index.html">My Documents <p class='ui-li-aside'>updated: 8p</p></a></li>
-      		<li><a href="index.html">Pictures</a></li>
+      		<!--li><a href="index.html">Pictures</a></li>
       		<li><a href="index.html">Engineering</a></li>
   				<li><a href="index.html">Product Roadmap</a></li>
   				<li><a href="index.html">Technology Strategy</a></li>
@@ -35,14 +37,14 @@
   				<li><a href="index.html">File 5</a></li>
   				<li><a href="index.html">File 6</a></li>
   				<li><a href="index.html">File 7</a></li>
-  				<li><a href="index.html">File 8</a></li>
+  				<li><a href="index.html">File 8</a></li-->
       	</ul>
       </div>
 
     </div>
 
-    <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8"  src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>        
+    <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8"  src="jquery.mobile-1.1.0-rc.1.min.js"></script>        
     <script type="text/javascript" charset="utf-8" src="common.js"></script>
     <script type="text/javascript" charset="utf-8" src="map.js"></script>
   </body>
