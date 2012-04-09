@@ -22,7 +22,7 @@
 	<false/>
 	<key>ExternalHosts</key>
 	<array>
-		<string>localhost</string>
+		<string>*</string>
 		<string>*.gstatic.com</string>
 		<string>*.googleapis.com</string>
 		<string>*.phonegap.com</string>

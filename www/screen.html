@@ -8,15 +8,14 @@
   <body> 
 
     <div data-role="dialog" data-theme="a">
-    	<h4>Share current session with?</h4>
+    	<h3>Connection Settings</h3>
       <fieldset data-role="controlgroup" data-theme="c">
-        <input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" data-mini="true"/><label for="checkbox-1">Stanford's PC</label>
-        <input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" data-mini="true"/><label for="checkbox-2">Apple TV</label>
-        <input type="checkbox" name="checkbox-3" id="checkbox-3" class="custom" data-mini="true"/><label for="checkbox-3">Sumeet's iPad</label>
+        <label for="text-box">Push Server IP:</label>
+        <input type="text" name="text-box" id="push-ip" class="custom" data-mini="true" autocorrect="off"/>
       </fieldset>
       <fieldset class="ui-grid-a">
         <div class="ui-block-a"><a href="index.html" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
-        <div class="ui-block-b"><a href="index.html" data-role="button" data-theme="b" data-mini="true">Submit</a></div>
+        <div class="ui-block-b"><a href="index.html" data-role="button" data-theme="b" data-mini="true" onclick='setupPushIP($("#push-ip").val());return true;'>Submit</a></div>
       </fieldset>
     </div>
   

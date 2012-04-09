@@ -18,6 +18,7 @@ var tabBarDrawn = false;
 var socket = null;
 var filelist;
 var filter;
+var PUSH_SERVER_IP;
 
 function init(url) {
   if (typeof url != 'string') {
@@ -40,8 +41,20 @@ function init(url) {
   }
 }
 
-function registerDevice() {
+function setupPushIP(ip) {
+  console.log('recieved push server location('+ip+') isConnected('+isConnected+')');
+  if (isConnected && !PUSH_SERVER_IP) {
+    var script_src = 'http://'+ip+'/socket.io/socket.io.js';
+    console.log('loading socket.io from '+script_src);
+    var fileref=document.createElement('script');
+    fileref.setAttribute("type","text/javascript");
+    fileref.setAttribute("src", script_src);
+    document.getElementsByTagName("head")[0].appendChild(fileref);
+    PUSH_SERVER_IP = ip;
+  } 
+}
 
+function registerDevice() {
   var populatefiles = function() {
     //console.log('flist length:'+filelist.length+' $(#filelist)='+$('#filelist'));
     var dir = {}; // for keeping a unique list of directories
@@ -105,11 +118,13 @@ function registerDevice() {
     return;
   }
   
+  if ( !PUSH_SERVER_IP ) return;
+  
   var user = 'sumeet';
-  var socket = io.connect('http://localhost:3000');
+  var socket = io.connect('http://'+PUSH_SERVER_IP);
   
   socket.on('connect', function() {
-    console.log('connected to http://localhost:3000');
+    console.log('connected to http://'+PUSH_SERVER_IP);
     socket.emit('adddevice','sumeet');
   });
   
